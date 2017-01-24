@@ -1,12 +1,9 @@
 {
     "name": "onlyii/onlyii",
     "description": "Yii2 CMS",
-    "keywords": [
-        "yii2",
-        "cms"
-    ],
-    "homepage": "http://onlyii.pro/",
-    "type": "yii2-cms",
+    "keywords": ["yii2", "cms", "application template"],
+    "homepage": "https://github.com/onlyii/onlyii/",
+    "type": "project",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -22,23 +19,39 @@
             "role": "Founder and cms development"
         }
     ],
+    "support": {
+        "issues": "https://github.com/onlyii/onlyii/issues?state=open",
+        "source": "https://github.com/onlyii/onlyii"
+    },
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.4"
+        "yiisoft/yii2": "~2.0.7"
     },
-    "autoload": {
-        "psr-4": {
-            "onlyii\\": "cms/"
-        }
+    "config": {
+        "process-timeout": 1800
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
     },
     "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        },
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
-        },
-        "asset-vcs-driver-options": {
-            "github-no-api": true
-        },
-        "asset-pattern-skip-version": "(-build|-patch)"
+        }
     }
 }
