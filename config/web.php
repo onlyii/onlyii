@@ -5,6 +5,10 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'minimal',
     'basePath' => dirname(__DIR__),
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'bootstrap' => ['log'],
     'components' => [
             'request' => [
